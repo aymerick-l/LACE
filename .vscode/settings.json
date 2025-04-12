@@ -1,0 +1,14 @@
+{
+    "editor.fontSize": 12,
+    "editor.fontFamily": "Fira code",
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/dist/**": true,
+        "**/node_modules/**": true,
+        "**/out/**": true
+    },
+    "typescript.suggest.paths": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

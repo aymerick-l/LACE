@@ -1,0 +1,13 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="tool-selector">
+  @for (tool of tools; track $index) {
+    <div class="tool" (click)="selectTool(tool)">
+      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        @if (tool.icon) {
+          <mat-icon>{{ tool.icon }}</mat-icon>
+        }
+      </button>
+    </div>
+  }
+</div>

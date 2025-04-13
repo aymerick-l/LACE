@@ -1,0 +1,7 @@
+<div cdkDrag>
+  @if (isEditMode()) {
+    <input type="text" [(ngModel)]="currentText" #update />
+  } @else {
+    <p>{{ currentText() }}</p>
+  }
+</div>

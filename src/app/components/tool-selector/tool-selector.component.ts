@@ -1,30 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Tool } from '../../model/tool';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { AbstractEditorComponent } from '../editor-components/abstract-editor/abstract-editor.component';
+import { TextComponent } from '../editor-components/text/text.component';
 
 @Component({
   selector: 'app-tool-selector',
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatIconModule, MatButtonToggleModule],
   templateUrl: './tool-selector.component.html',
   styleUrl: './tool-selector.component.scss',
 })
 export class ToolSelectorComponent {
+  //output that indicate that selected tool change
+  toolUpdate = output<Tool>();
+
+  selectedTool?: Tool;
+
   tools: Tool[] = [
-    {
-      name: 'Selector',
-      description: 'Select a component of the view',
-      icon: 'mouse',
-    },
-    {
-      name: 'Text',
-      description: 'Add a text on the view',
-      icon: 'text_fields',
-    },
+    new Tool('Selector', 'Select a component of the view', 'mouse', AbstractEditorComponent),
+    new Tool('Text', 'Add a text on the view', 'text_fields', TextComponent),
   ];
 
+  /**
+   * Update the selected tool
+   * @param tool
+   */
   selectTool(tool: Tool) {
-    console.log('Selected tool:', tool);
-    // Logic to handle tool selection goes here
+    console.debug('Selected tool:', tool.Name);
+    this.selectedTool = tool;
+    this.toolUpdate.emit(this.selectedTool);
   }
 }

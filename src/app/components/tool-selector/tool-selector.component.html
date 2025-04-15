@@ -1,0 +1,15 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="tool-selector">
+  <mat-button-toggle-group appname="tool" hideSingleSelectionIndicator="true">
+    @for (tool of tools; track $index) {
+    <div class="tool" (click)="selectTool(tool)">
+      <mat-button-toggle [value]="tool.name">
+        @if (tool.icon) {
+        <mat-icon>{{ tool.icon }}</mat-icon>
+        }
+      </mat-button-toggle>
+    </div>
+    }
+  </mat-button-toggle-group>
+</div>

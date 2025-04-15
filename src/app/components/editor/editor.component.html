@@ -1,0 +1,10 @@
+<div id="content" (click)="manageClickOnCanvas($event)">
+  <ng-container></ng-container>
+</div>
+
+<div class="left-selector-sidebar">
+  <app-side-selector [componentList]="listComponents"></app-side-selector>
+</div>
+<div class="bottom-tool-selector">
+  <app-tool-selector (toolUpdate)="updateTool($event)"></app-tool-selector>
+</div>

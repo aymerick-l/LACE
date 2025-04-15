@@ -1,0 +1,35 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+@if (isMinimized()) {
+  <div class="left-sidebar-minimized">
+    <div>
+      <button (click)="updateDisplayState()" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+} @else {
+  <div class="left-sidebar">
+    <div class="left-sidebar-header">
+      <button
+        (click)="updateDisplayState()"
+        mat-icon-button
+        aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+      <h4>Liste des composants</h4>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="left-sidebar-content">
+      @for (component of componentList; track $index) {
+        <div class="component-item" (click)="selectComponent(component)">
+          <p>{{ component.instance.label() | truncate: 15 }}</p>
+          <button (click)="removeCurrentComponent(component, $index)" mat-icon-button>
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

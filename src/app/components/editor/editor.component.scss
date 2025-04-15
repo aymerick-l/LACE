@@ -1,0 +1,19 @@
+#content {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.bottom-tool-selector {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  bottom: 10px;
+}
+
+app-tool-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

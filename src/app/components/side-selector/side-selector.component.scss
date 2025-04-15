@@ -1,0 +1,40 @@
+.left-sidebar-minimized {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: auto;
+  width: auto;
+  z-index: 10;
+}
+
+.left-sidebar {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  width: 15%;
+  background-color: rgb(239, 239, 239);
+  z-index: 10;
+}
+
+.left-sidebar-header {
+  height: 20%;
+}
+
+.left-sidebar-content {
+  overflow: scroll;
+  height: 80%;
+}
+
+.component-item {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: space-between;
+  align-items: left;
+  padding: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 100%;
+}

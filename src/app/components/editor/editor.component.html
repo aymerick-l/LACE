@@ -1,5 +1,7 @@
-<div id="content" (click)="manageClickOnCanvas($event)">
-  <ng-container></ng-container>
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<div id="content" (click)="manageClickOnCanvas($event)" appZoom>
+  <ng-container #dynamicContainer></ng-container>
 </div>
 
 <div class="left-selector-sidebar">

@@ -1,18 +1,19 @@
-import { Component, ComponentRef, inject, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, inject, ViewChild, ViewContainerRef } from '@angular/core';
 import { ToolSelectorComponent } from '../tool-selector/tool-selector.component';
 import { Tool } from '../../model/tool';
 import { AbstractEditorComponent } from '../editor-components/abstract-editor/abstract-editor.component';
-import { SideSelectorComponent } from "../side-selector/side-selector.component";
+import { SideSelectorComponent } from '../side-selector/side-selector.component';
+import { ZoomDirective } from '../../directive/zoom.directive';
 
 @Component({
   selector: 'app-editor',
-  imports: [ToolSelectorComponent, SideSelectorComponent],
+  imports: [ToolSelectorComponent, SideSelectorComponent, ZoomDirective],
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss',
 })
 export class EditorComponent {
-
-  vcr = inject(ViewContainerRef);
+  @ViewChild('dynamicContainer', { read: ViewContainerRef, static: true })
+  vcr!: ViewContainerRef;
 
   //list of component added to the editor
   listComponents: ComponentRef<AbstractEditorComponent>[] = [];
@@ -39,9 +40,7 @@ export class EditorComponent {
     }
     //create the component with the actual tool
     console.log('Creating component with tool:', this.currentTool.getComponent());
-    const createdComponent = this.vcr.createComponent(
-      this.currentTool.getComponent()
-    );
+    const createdComponent = this.vcr.createComponent(this.currentTool.getComponent());
     createdComponent.setInput('text', 'clicked!');
     // Positionning the component where the click happen
     const elementRef = createdComponent.location.nativeElement as HTMLElement;
@@ -57,7 +56,7 @@ export class EditorComponent {
 
   /**
    * Update the current tool for the dic to edit
-   * @param updatedTool 
+   * @param updatedTool
    */
   updateTool(updatedTool: Tool) {
     console.debug('Tool updated:', updatedTool.Name);

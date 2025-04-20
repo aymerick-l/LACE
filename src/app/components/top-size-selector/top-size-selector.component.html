@@ -1,0 +1,21 @@
+<div class="controller-bar">
+  <label>
+    Largeur:
+    <input class="input" type="number" [(ngModel)]="width" (change)="applySize()" />
+    <select class="select" [(ngModel)]="widthUnit" (change)="applySize()">
+      @for (u of units; track $index) {
+        <option [value]="u">{{ u }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    Hauteur:
+    <input class="input" type="number" [(ngModel)]="height" (change)="applySize()" />
+    <select class="select" [(ngModel)]="heightUnit" (change)="applySize()">
+      @for (u of units; track $index) {
+        <option [value]="u">{{ u }}</option>
+      }
+    </select>
+  </label>
+</div>

@@ -1,4 +1,4 @@
-<div cdkDrag>
+<div appDraggable mode="element">
   @if (isEditMode()) {
     <input type="text" [(ngModel)]="currentText" #update />
   } @else {

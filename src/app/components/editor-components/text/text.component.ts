@@ -8,13 +8,13 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { AbstractEditorComponent } from '../abstract-editor/abstract-editor.component';
+import { DraggableDirective } from '../../../directive/draggable.directive';
 
 @Component({
   selector: 'app-text',
-  imports: [CdkDrag, FormsModule],
+  imports: [DraggableDirective, FormsModule],
   templateUrl: './text.component.html',
   styleUrl: './text.component.scss',
 })

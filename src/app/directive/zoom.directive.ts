@@ -1,4 +1,6 @@
 import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { ZoomService } from '../services/zoom.service';
+
 @Directive({
   selector: '[appZoom]',
 })
@@ -10,7 +12,8 @@ export class ZoomDirective {
 
   constructor(
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private zoomService: ZoomService
   ) {}
 
   @HostListener('wheel', ['$event'])
@@ -18,14 +21,31 @@ export class ZoomDirective {
     event.preventDefault();
 
     const delta = Math.sign(event.deltaY);
+
+    // calculate zoom factor
+    let newScale = this.scale;
     if (delta > 0) {
-      this.scale = Math.max(this.minScale, this.scale - this.scaleStep);
+      newScale = Math.max(this.minScale, this.scale - this.scaleStep);
     } else {
-      this.scale = Math.min(this.maxScale, this.scale + this.scaleStep);
+      newScale = Math.min(this.maxScale, this.scale + this.scaleStep);
     }
 
-    this.renderer.setStyle(this.el.nativeElement, 'transform', `scale(${this.scale})`);
+    // If no change in scale, do nothing
+    if (newScale === this.scale) return;
 
-    this.renderer.setStyle(this.el.nativeElement, 'transform-origin', 'center');
+    //coodinates of the mouse in the element
+    const rect = this.el.nativeElement.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const offsetY = event.clientY - rect.top;
+
+    // New origin of the element
+    const originX = offsetX / this.scale;
+    const originY = offsetY / this.scale;
+
+    //Style update
+    this.scale = newScale;
+    this.zoomService.scale = newScale;
+    this.renderer.setStyle(this.el.nativeElement, 'transform-origin', `${originX}px ${originY}px`);
+    this.renderer.setStyle(this.el.nativeElement, 'transform', `scale(${this.scale})`);
   }
 }

@@ -1,13 +1,21 @@
-import { Component, ComponentRef, inject, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ToolSelectorComponent } from '../tool-selector/tool-selector.component';
 import { Tool } from '../../model/tool';
 import { AbstractEditorComponent } from '../editor-components/abstract-editor/abstract-editor.component';
 import { SideSelectorComponent } from '../side-selector/side-selector.component';
 import { ZoomDirective } from '../../directive/zoom.directive';
+import { TopSizeSelectorComponent } from '../top-size-selector/top-size-selector.component';
+import { DraggableDirective } from '../../directive/draggable.directive';
 
 @Component({
   selector: 'app-editor',
-  imports: [ToolSelectorComponent, SideSelectorComponent, ZoomDirective],
+  imports: [
+    ToolSelectorComponent,
+    SideSelectorComponent,
+    ZoomDirective,
+    TopSizeSelectorComponent,
+    DraggableDirective,
+  ],
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss',
 })
